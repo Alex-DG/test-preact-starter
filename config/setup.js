@@ -44,8 +44,7 @@ module.exports = isProd => {
         caches: 'all',
         externals: ['/shell'],
         excludes: ['**/.*', '**/*.map', '**/*.js.br', '**/*.js.gzip', '**/*.css', '**/*.css.br', '**/*.css.gzip'],
-        autoUpdate: 1000 * 5,
-        AppCache: 1000 * 5,
+        autoUpdate: true,
         ServiceWorker: {
           publicPath: 'sw.js'
         }
