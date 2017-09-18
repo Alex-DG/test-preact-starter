@@ -1,7 +1,7 @@
 {
   "name": "Preact Starter",
   "short_name": "Preact",
-  "start_url": "/",
+  "start_url": "/?homescreen=1",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#F2F2F2",
