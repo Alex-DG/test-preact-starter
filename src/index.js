@@ -56,7 +56,7 @@ if (process.env.NODE_ENV === 'production') {
   //   }).catch(function(e) {
   //     console.error('Error during service worker registration:', e);
   //   });
-  }
+  //}
 
 	// add Google Analytics
 	window.ga = new GAnalytics('UA-XXXXXXXX-X');
