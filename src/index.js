@@ -2,8 +2,6 @@ import { render } from 'preact';
 import GAnalytics from 'ganalytics';
 import './index.sass';
 
-require('offline-plugin/runtime').install();
-
 let elem, App;
 function init() {
 	App = require('./views').default;

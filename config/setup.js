@@ -10,13 +10,6 @@ const OfflinePlugin = require('offline-plugin');
 
 const root = join(__dirname, '..');
 
-// new SWPrecache({
-//   filename: 'service-worker.js',
-//   dontCacheBustUrlsMatching: /./,
-//   navigateFallback: 'index.html',
-//   staticFileGlobsIgnorePatterns: [/\.map$/]
-// })
-
 module.exports = isProd => {
 	// base plugins array
 	const plugins = [
@@ -34,14 +27,11 @@ module.exports = isProd => {
 			new webpack.LoaderOptionsPlugin({ minimize:true }),
 			new webpack.optimize.UglifyJsPlugin(uglify),
 			new ExtractText('styles.[hash].css'),
-      new OfflinePlugin({
-        caches: 'all',
-        externals: ['/shell'],
-        excludes: ['**/.*', '**/*.map', '**/*.js.br', '**/*.js.gzip', '**/*.css', '**/*.css.br', '**/*.css.gzip'],
-        autoUpdate: true,
-        ServiceWorker: {
-          publicPath: 'sw.js'
-        }
+      new SWPrecache({
+        filename: 'service-worker.js',
+        dontCacheBustUrlsMatching: /./,
+        navigateFallback: 'index.html',
+        staticFileGlobsIgnorePatterns: [/\.map$/]
       })
 		);
 	} else {
