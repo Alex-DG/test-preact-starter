@@ -35,12 +35,6 @@ module.exports = isProd => {
 			new webpack.optimize.UglifyJsPlugin(uglify),
 			new ExtractText('styles.[hash].css'),
       new OfflinePlugin({
-        cacheMaps: [{
-          match: function(requestUrl) {
-            return new URL('/shell', location);
-          },
-          requestTypes: ['navigate']
-        }],
         caches: 'all',
         externals: ['/shell'],
         excludes: ['**/.*', '**/*.map', '**/*.js.br', '**/*.js.gzip', '**/*.css', '**/*.css.br', '**/*.css.gzip'],
