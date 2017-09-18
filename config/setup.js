@@ -28,6 +28,7 @@ module.exports = isProd => {
 			new ExtractText('styles.[hash].css'),
 			new SWPrecache({
 				filename: 'service-worker.js',
+				dontCacheBustUrlsMatching: /./,
 				navigateFallback: 'index.html',
 				staticFileGlobsIgnorePatterns: [/\.map$/]
 			})
