@@ -6,8 +6,16 @@ const Clean = require('clean-webpack-plugin');
 const Copy = require('copy-webpack-plugin');
 const HTML = require('html-webpack-plugin');
 const uglify = require('./uglify');
+const OfflinePlugin = require('offline-plugin');
 
 const root = join(__dirname, '..');
+
+// new SWPrecache({
+//   filename: 'service-worker.js',
+//   dontCacheBustUrlsMatching: /./,
+//   navigateFallback: 'index.html',
+//   staticFileGlobsIgnorePatterns: [/\.map$/]
+// })
 
 module.exports = isProd => {
 	// base plugins array
@@ -26,12 +34,22 @@ module.exports = isProd => {
 			new webpack.LoaderOptionsPlugin({ minimize:true }),
 			new webpack.optimize.UglifyJsPlugin(uglify),
 			new ExtractText('styles.[hash].css'),
-			new SWPrecache({
-				filename: 'service-worker.js',
-				dontCacheBustUrlsMatching: /./,
-				navigateFallback: 'index.html',
-				staticFileGlobsIgnorePatterns: [/\.map$/]
-			})
+      new OfflinePlugin({
+        cacheMaps: [{
+          match: function(requestUrl) {
+            return new URL('/shell', location);
+          },
+          requestTypes: ['navigate']
+        }],
+        caches: 'all',
+        externals: ['/shell'],
+        excludes: ['**/.*', '**/*.map', '**/*.js.br', '**/*.js.gzip', '**/*.css', '**/*.css.br', '**/*.css.gzip'],
+        autoUpdate: 1000 * 5,
+        AppCache: 1000 * 5,
+        ServiceWorker: {
+          publicPath: 'sw.js'
+        }
+      })
 		);
 	} else {
 		// dev only
