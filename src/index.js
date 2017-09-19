@@ -16,20 +16,18 @@ if (process.env.NODE_ENV === 'production') {
   // if ('serviceWorker' in navigator && location.protocol === 'https:') {
   //   navigator.serviceWorker.register('/service-worker.js')
   //   .then(reg => {
-  //     console.log('SW Registered!!');
-  //     reg.update({force: true});
-  //     // console.log(new Map(reg.headers));
-  //     //
-  //     // const newHeaders = new Headers(reg.headers);
-  //     // newHeaders.append('Cache-Control', 'public, max-age=0');
-  //     //
-  //     // const anotherResponse = new Response(reg.body, {
-  //     //   status: reg.status,
-  //     //   statusText: reg.statusText,
-  //     //   headers: newHeaders
-  //     // });
-  //     //
-  //     // console.log(new Map(anotherResponse.headers));
+  //     console.log(new Map(reg.headers));
+  //
+  //     const newHeaders = new Headers(reg.headers);
+  //     newHeaders.append('Cache-Control', 'public, max-age=0');
+  //
+  //     const anotherResponse = new Response(reg.body, {
+  //       status: reg.status,
+  //       statusText: reg.statusText,
+  //       headers: newHeaders
+  //     });
+  //
+  //     console.log(new Map(anotherResponse.headers));
   //   })
   //   .catch(err => console.log('Boo!', err));
 	// }
