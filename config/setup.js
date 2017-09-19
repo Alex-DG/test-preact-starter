@@ -30,14 +30,9 @@ module.exports = isProd => {
       new SWPrecache({
         cacheId: 'sw-preact-starter',
         filename: 'service-worker.js',
-        dontCacheBustUrlsMatching: /./,
         navigateFallback: 'index.html',
         minify: true,
-        staticFileGlobsIgnorePatterns: [/\.map$/],
-        runtimeCaching: [{
-          urlPattern: /^(service-worker)\.js$/,
-          handler: 'networkFirst'
-        }]
+        staticFileGlobsIgnorePatterns: [/\.map$/]
       })
 		);
 	} else {
