@@ -28,11 +28,10 @@ module.exports = isProd => {
 			new webpack.optimize.UglifyJsPlugin(uglify),
 			new ExtractText('styles.[hash].css'),
       new SWPrecache({
-        cacheId: 'sw-preact-starter',
         filename: 'service-worker.js',
-        navigateFallback: 'index.html',
-        minify: true,
-        staticFileGlobsIgnorePatterns: [/\.map$/]
+  			dontCacheBustUrlsMatching: /./,
+  			navigateFallback: 'index.html',
+  			staticFileGlobsIgnorePatterns: [/\.map$/]
       })
 		);
 	} else {
