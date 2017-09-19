@@ -15,8 +15,8 @@ if (process.env.NODE_ENV === 'production') { //  navigator.serviceWorker.registe
   if ('serviceWorker' in navigator && location.protocol === 'https:') {
     navigator.serviceWorker.register('/service-worker.js')
     .then(reg => {
-      console.log(reg.headers);
-      reg.update();
+      console.log('SW Registered!!');
+      reg.update({force: true});
       // console.log(new Map(reg.headers));
       //
       // const newHeaders = new Headers(reg.headers);
