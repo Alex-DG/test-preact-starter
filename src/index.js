@@ -13,7 +13,7 @@ init();
 if (process.env.NODE_ENV === 'production') {
 	// cache all assets if browser supports serviceworker
   if ('serviceWorker' in navigator && location.protocol === 'https:') {
-    navigator.serviceWorker.register('/service-worker.js')
+    navigator.serviceWorker.register('/service-worker.js', {cache: 'no-cache'})
     .then(reg => console.log('SW registered!', reg))
     .catch(err => console.log('Boo!', err));
 	}
