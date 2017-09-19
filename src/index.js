@@ -15,18 +15,20 @@ if (process.env.NODE_ENV === 'production') { //  navigator.serviceWorker.registe
   if ('serviceWorker' in navigator && location.protocol === 'https:') {
     navigator.serviceWorker.register('/service-worker.js')
     .then(reg => {
-      console.log(new Map(reg.headers));
-
-      const newHeaders = new Headers(reg.headers);
-      newHeaders.append('Cache-Control', 'public, max-age=0');
-
-      const anotherResponse = new Response(reg.body, {
-        status: reg.status,
-        statusText: reg.statusText,
-        headers: newHeaders
-      });
-
-      console.log(new Map(anotherResponse.headers));
+      console.log(reg.headers);
+      reg.update();
+      // console.log(new Map(reg.headers));
+      //
+      // const newHeaders = new Headers(reg.headers);
+      // newHeaders.append('Cache-Control', 'public, max-age=0');
+      //
+      // const anotherResponse = new Response(reg.body, {
+      //   status: reg.status,
+      //   statusText: reg.statusText,
+      //   headers: newHeaders
+      // });
+      //
+      // console.log(new Map(anotherResponse.headers));
     })
     .catch(err => console.log('Boo!', err));
 	}
