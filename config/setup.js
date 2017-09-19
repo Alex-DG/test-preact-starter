@@ -9,7 +9,14 @@ const uglify = require('./uglify');
 const OfflinePlugin = require('offline-plugin');
 
 const root = join(__dirname, '..');
-
+// new SWPrecache({
+//   cacheId: 'sw-preact-starter',
+//   filename: 'service-worker.js',
+//   dontCacheBustUrlsMatching: /./,
+//   navigateFallback: 'index.html',
+//   minify: true,
+//   staticFileGlobsIgnorePatterns: [/\.map$/]
+// })
 module.exports = isProd => {
 	// base plugins array
 	const plugins = [
@@ -28,12 +35,25 @@ module.exports = isProd => {
 			new webpack.optimize.UglifyJsPlugin(uglify),
 			new ExtractText('styles.[hash].css'),
       new SWPrecache({
-        cacheId: 'sw-preact-starter',
+        cacheId: 'preact-service-worker',
         filename: 'service-worker.js',
-        dontCacheBustUrlsMatching: /./,
-        navigateFallback: 'index.html',
-        minify: true,
-        staticFileGlobsIgnorePatterns: [/\.map$/]
+        directoryIndex: '/',
+        staticFileGlobs: [
+          '/',
+          './dist/manifest-*.json',
+          // './build/public/bundle-*.{css,js}', // depends if we inlineJs, inlineCss or not
+          './dist/img/*.{gif,png,svg}' // will not preache /icons
+        ],
+        navigateFallback: '/',
+        dynamicUrlToDependencies: {
+          '/': ['./dist/manifest.json', './package.json'] // bust cache when these change
+        },
+        skipWaiting: true,
+        stripPrefix: './dist',
+        runtimeCaching: [{
+          urlPattern: /\/posts/, // handle remote api call
+          handler: 'cacheFirst'
+        }]
       })
 		);
 	} else {
