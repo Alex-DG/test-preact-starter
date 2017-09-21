@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === 'production') {
   //  navigator.serviceWorker.register('/service-worker.js', {cache: 'no-cache'})
 	// cache all assets if browser supports serviceworker
   if ('serviceWorker' in navigator && location.protocol === 'https:') {
-    navigator.serviceWorker.register('/service-worker.js', {'cache-control: no-cache'})
+    navigator.serviceWorker.register('/service-worker.js')
     .then(reg => {
       console.log('sw registered!');
       // console.log(new Map(reg.headers));
