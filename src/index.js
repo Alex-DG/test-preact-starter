@@ -2,22 +2,8 @@ import { render } from 'preact';
 import GAnalytics from 'ganalytics';
 import './index.sass';
 
-import * as firebase from "firebase";
-
-// Initialize Firebase
-// TODO: Replace with your project's customized code snippet
-var config = {
-  apiKey: "AIzaSyDqtXvxCLC0Mg3FD6PbpHxbJ5rttKR__so",
-  authDomain: "preact-starter-app.firebaseapp.com",
-  databaseURL: "https://preact-starter-app.firebaseio.com",
-  projectId: "preact-starter-app",
-  messagingSenderId: "81347641095"
-  storageBucket: "",
-};
-
 let elem, App;
 function init() {
-  firebase.initializeApp(config);
 	App = require('./views').default;
 	elem = render(App, document.getElementById('root'), elem);
 }
