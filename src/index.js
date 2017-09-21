@@ -14,20 +14,21 @@ if (process.env.NODE_ENV === 'production') {
   //  navigator.serviceWorker.register('/service-worker.js', {cache: 'no-cache'})
 	// cache all assets if browser supports serviceworker
   if ('serviceWorker' in navigator && location.protocol === 'https:') {
-    navigator.serviceWorker.register('/service-worker.js')
+    navigator.serviceWorker.register('/service-worker.js', {'cache-control: no-cache'})
     .then(reg => {
-      console.log(new Map(reg.headers));
-
-      const newHeaders = new Headers(reg.headers);
-      newHeaders.append("Cache-Control", "no-cache, no-store, must-revalidate");
-
-      const anotherResponse = new Response(reg.body, {
-        status: reg.status,
-        statusText: reg.statusText,
-        headers: newHeaders
-      });
-
-      console.log(new Map(anotherResponse.headers));
+      console.log('sw registered!');
+      // console.log(new Map(reg.headers));
+      //
+      // const newHeaders = new Headers(reg.headers);
+      // newHeaders.append("Cache-Control", "no-cache, no-store, must-revalidate");
+      //
+      // const anotherResponse = new Response(reg.body, {
+      //   status: reg.status,
+      //   statusText: reg.statusText,
+      //   headers: newHeaders
+      // });
+      //
+      // console.log(new Map(anotherResponse.headers));
     })
     .catch(err => console.log('Boo!', err));
 	}
