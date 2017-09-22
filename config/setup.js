@@ -22,7 +22,7 @@ module.exports = isProd => {
 		})
 	];
 
-	if (isProd) { //        dontCacheBustUrlsMatching: '**/service-worker.js',
+	if (isProd) {
 		plugins.push(
 			new webpack.LoaderOptionsPlugin({ minimize:true }),
 			new webpack.optimize.UglifyJsPlugin(uglify),
@@ -30,6 +30,7 @@ module.exports = isProd => {
       new SWPrecache({
         filename: 'service-worker.js',
   			navigateFallback: 'index.html',
+        dontCacheBustUrlsMatching: '**/service-worker.js',
         staticFileGlobs: [
           'src/static/img/**.*',
           'src/styles/all.sass',
