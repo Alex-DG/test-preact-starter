@@ -2,7 +2,3 @@ node_modules
 .DS_Store
 *.log
 dist
-
-// Test
-.firebaserc
-firebase.json
