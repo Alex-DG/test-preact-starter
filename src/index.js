@@ -37,6 +37,7 @@ if (process.env.NODE_ENV === 'production') {
 
     window.addEventListener('load', function() {
     navigator.serviceWorker.register('/service-worker.js').then(function(reg) {
+      console.log('service-worker registered');
       // updatefound is fired if service-worker.js changes.
       reg.onupdatefound = function() {
         // The updatefound event implies that reg.installing is set; see
@@ -51,11 +52,11 @@ if (process.env.NODE_ENV === 'production') {
                 // have been added to the cache.
                 // It's the perfect time to display a "New content is available; please refresh."
                 // message in the page's interface.
-                alert('New or updated content is available.');
+                console.log('New or updated content is available.');
               } else {
                 // At this point, everything has been precached.
                 // It's the perfect time to display a "Content is cached for offline use." message.
-                alert('Content is now available offline!');
+                console.log('Content is now available offline!');
               }
               break;
             case 'redundant':
