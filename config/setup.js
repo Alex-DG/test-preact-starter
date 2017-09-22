@@ -29,9 +29,14 @@ module.exports = isProd => {
 			new ExtractText('styles.[hash].css'),
       new SWPrecache({
         filename: 'service-worker.js',
-  			dontCacheBustUrlsMatching: /./,
   			navigateFallback: 'index.html',
-  			staticFileGlobsIgnorePatterns: [/\.map$/]
+        staticFileGlobs: [
+          'src/static/img/**.*',
+          'src/styles/all.sass',
+        ],
+        stripPrefix: 'src/static/', // stripPrefixMulti is also supported
+        mergeStaticsConfig: true, // if you don't set this to true, you won't see any webpack-emitted assets in your serviceworker config
+        staticFileGlobsIgnorePatterns: [/\.map$/], // use this to ignore sourcemap files
       })
 		);
 	} else {
