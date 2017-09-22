@@ -30,7 +30,7 @@ module.exports = isProd => {
       new SWPrecache({
         filename: 'service-worker.js',
   			navigateFallback: 'index.html',
-        dontCacheBustUrlsMatching: \*/service-worker.js/,
+        dontCacheBustUrlsMatching: \*/service-worker.js/\,
         staticFileGlobs: [
           'src/static/img/**.*',
           'src/styles/all.sass',
