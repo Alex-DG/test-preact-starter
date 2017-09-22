@@ -12,7 +12,7 @@
   "scripts": {
     "postinstall": "webpack --env.production --config config/webpack",
     "build": "webpack --env.production --config config/webpack",
-    "start": "serve dist -s",
+    "start": "serve dist -s -c 0",
     "watch": "webpack-dev-server --config config/webpack"
   },
   "dependencies": {
